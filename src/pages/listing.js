@@ -212,7 +212,7 @@ export default class Listing extends Component {
                     setValue={val => this.setFormFieldValue('location', val)}
                   />
                 </FormFieldWrap>
-                <FormFieldWrap alignment="display: flex; align-items: center;">
+                <FormFieldWrap alignment="display: flex; align-items: center;display: flex;">
                   <Checkbox
                     setValue={val => this.setFormFieldValue('remote', val)}
                     label="Remote OK"

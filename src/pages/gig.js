@@ -72,8 +72,11 @@ const LogoCard = styled('div')`
   border-radius: 4px;
 
   img {
-    height: 100px;
+    height: auto;
+    width: auto;
     margin-bottom: 0px;
+    max-height: 100px;
+    max-width: 100px;
   }
 `
 
@@ -133,6 +136,7 @@ export default class Gig extends Component {
   }
 
   gatherDataFromProps() {
+   
     this.setState({
       fields: this.props.location.state.fields,
     })

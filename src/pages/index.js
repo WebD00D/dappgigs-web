@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
 
-import moment from 'moment'
+import db from '../db'
+
+import _ from "lodash";
+
 
 import styled from 'react-emotion'
 
@@ -20,10 +23,12 @@ import Button from '../components/Button'
 import Checkbox from '../components/Checkbox'
 import Select from '../components/Select'
 
+import JobCard from '../components/JobCard'
+import { list } from 'postcss'
+
 const Hero = styled('div')`
-  height: 500px;
+  height: 600px;
   width: 100%;
-  padding-top: 50px;
   margin-bottom: 50px;
 
   background-color: #fff;
@@ -38,6 +43,7 @@ const Hero = styled('div')`
     font-family: Circular Std;
     line-height: 1.25;
     max-width: 600px;
+    font-size: 48px;
   }
 
   h3 {
@@ -47,6 +53,20 @@ const Hero = styled('div')`
     font-size: 16px;
     display: flex;
     align-items: center;
+  }
+`
+
+const HeroContainer = styled('div')`
+  max-width: 1100px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  @media (max-width: 800px) {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 `
 
@@ -71,33 +91,62 @@ const BodyCopy = styled('div')`
   font-family: Circular Std;
   font-size: 16px;
   font-weight: 500;
- 
 
   ${props => props.maxWidth};
 `
 
-
-
 export default class IndexPage extends Component {
   constructor(props) {
     super(props)
+
+    this.renderListings = this.renderListings.bind(this)
+
+    this.state = {
+      listings: [],
+    }
   }
 
   componentDidMount() {
     // fetch listings..
+
+    db.database()
+      .ref('/listings')
+      .once('value')
+      .then(snapshot => {
+        console.log('snapshot val', snapshot.val())
+        this.setState({
+          listings: snapshot.val(),
+        })
+      })
+  }
+
+  renderListings() {
+    const listings =
+      this.state.listings &&
+      Object.keys(this.state.listings).map(key => {
+        console.log(key)
+        return (
+          <FormFieldRow key={this.state.listings[key].stripeRef}>
+            <JobCard id={key} fields={this.state.listings[key]} />
+          </FormFieldRow>
+        )
+      })
+
+    return _.reverse(listings);
   }
 
   render() {
     return (
       <Layout>
         <Hero>
-          <PageContainer>
+          <HeroContainer>
             <FlexContainer flexProps="justify-content: center; flex-direction: column; position: relative;">
               <h1>Join a team building for a decentralized future.</h1>
-              <BodyCopy maxWidth="max-width: 500px" >
-                We help folks find great companies that are creating dapps on Ethereum's decentralized platform.
+              <BodyCopy maxWidth="max-width: 500px">
+                We help folks find great companies that are creating dapps on
+                Ethereum's decentralized platform.
               </BodyCopy>
-              
+
               <CTA>
                 <Link
                   style={{ color: '#FF6748', paddingRight: '6px' }}
@@ -112,8 +161,11 @@ export default class IndexPage extends Component {
                 </Link>
               </CTA>
             </FlexContainer>
-          </PageContainer>
+          </HeroContainer>
         </Hero>
+        <PageContainer>
+          {this.renderListings()}
+        </PageContainer>
       </Layout>
     )
   }
