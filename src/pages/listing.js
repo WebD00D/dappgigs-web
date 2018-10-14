@@ -30,7 +30,7 @@ import { list } from 'postcss'
 const Hero = styled('div')`
   height: 400px;
   width: 100%;
-  padding-top: 50px;
+  padding-top: 100px;
   margin-bottom: 50px;
 
   background-color: #fff;
@@ -246,7 +246,7 @@ export default class Listing extends Component {
                     options={[
                       '--',
                       'Design',
-                      'Programming',
+                      'Engineering',
                       'Support',
                       'Copywriting',
                       'DevOps',

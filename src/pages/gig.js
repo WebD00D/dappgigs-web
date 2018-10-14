@@ -23,7 +23,7 @@ import Select from '../components/Select'
 const Hero = styled('div')`
   height: 400px;
   width: 100%;
-  padding-top: 50px;
+  padding-top: 100px;
   margin-bottom: 50px;
 
   background-color: #fff;
@@ -136,7 +136,6 @@ export default class Gig extends Component {
   }
 
   gatherDataFromProps() {
-   
     this.setState({
       fields: this.props.location.state.fields,
     })
@@ -184,7 +183,7 @@ export default class Gig extends Component {
     } = this.state.fields
 
     return (
-      <div>
+      <Layout>
         <Hero>
           <PageContainer>
             <FlexContainer>
@@ -240,22 +239,9 @@ export default class Gig extends Component {
             <FormFieldWrap />
           </FormFieldRow>
         </PageContainer>
-      </div>
+      </Layout>
     )
   }
 }
 
-// ch_1DL0b24JB0H1ff1k1kW4t3oI
 
-//         props.location.state.fields.company
-//         props.location.state.fields.position
-//         props.location.state.fields.location
-//         props.location.state.fields.remote
-//         props.location.state.fields.about
-//         props.location.state.fields.description
-//         props.location.state.fields.category
-//         props.location.state.fields.salary
-//         props.location.state.fields.engagement
-//         props.location.state.fields.website
-//         props.location.state.fields.applyURL
-//         props.location.state.fields.logoURL

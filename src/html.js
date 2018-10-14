@@ -13,7 +13,8 @@ export default class HTML extends React.Component {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
           {this.props.headComponents}
-          <script id="stripe-js" src="https://js.stripe.com/v3/" async/>
+          <script id="stripe-js" src="https://js.stripe.com/v3/" async />
+          <script src="https://wchat.freshchat.com/js/widget.js" />
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
@@ -22,7 +23,18 @@ export default class HTML extends React.Component {
             id="___gatsby"
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
+
           {this.props.postBodyComponents}
+
+          <script
+            id="__freshchat"
+            dangerouslySetInnerHTML={{
+              __html: ` window.fcWidget.init({
+              token: 'b3e8cf21-b582-4d76-b312-b999eebcc1b1',
+              host: 'https://wchat.freshchat.com',
+            })  `,
+            }}
+          />
         </body>
       </html>
     )

@@ -39,7 +39,7 @@ const Hero = styled('div')`
 
   h1 {
     margin-bottom: 22px;
-    color: #1c2557;
+    color: #6324fe;
     font-family: Circular Std;
     line-height: 1.25;
     max-width: 600px;
