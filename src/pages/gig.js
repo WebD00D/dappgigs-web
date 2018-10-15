@@ -247,7 +247,7 @@ export default class Gig extends Component {
             <ButtonContainer />
             <Button
               handleClick={() => navigate('/listing')}
-              label="Post a listing for $49"
+              label="Post a listing"
               bg="#32E19F"
               color="#FFF"
               hoverBg="#2DCE91"
