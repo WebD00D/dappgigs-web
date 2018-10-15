@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import Layout from '../components/layout'
 
 import db from '../db'
@@ -106,6 +106,51 @@ const BodyCopy = styled('div')`
   ${props => props.maxWidth};
 `
 
+const Navigation = styled('div')`
+  height: 80px;
+  padding-left: 30px;
+  padding-right: 30px;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+  background-color: #fff;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+
+  @media (max-width: 700px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+`
+
+const Logo = styled(Link)`
+  font-family: Circular Std;
+  display: flex;
+  align-items: center;
+  color: #6324fe;
+  font-size: 24px;
+  font-weight: 500;
+  text-decoration: none;
+
+  img {
+    height: 45px;
+    margin-bottom: 0px;
+    margin-right: 12px;
+  }
+`
+
+const Links = styled('div')`
+  display: flex;
+  align-items: center;
+`
+
+const ButtonContainer = styled('div')`
+  width: 175px;
+`
+
+
 export default class IndexPage extends Component {
   constructor(props) {
     super(props)
@@ -115,14 +160,12 @@ export default class IndexPage extends Component {
     this.state = {
       listings: [],
       loadingZIndex: 11,
-      loadingOpacity: 1
+      loadingOpacity: 1,
     }
   }
 
   componentDidMount() {
     // fetch listings..
-
-  
 
     db.database()
       .ref('/listings')
@@ -132,7 +175,7 @@ export default class IndexPage extends Component {
         this.setState({
           listings: snapshot.val(),
           loadingZIndex: -1,
-          loadingOpacity: 0
+          loadingOpacity: 0,
         })
       })
   }
@@ -168,15 +211,44 @@ export default class IndexPage extends Component {
             zIndex: this.state.loadingZIndex,
             opacity: this.state.loadingZIndex,
             transition: '.4s ease',
-            top: '0px'
+            top: '0px',
           }}
         >
           <img
             style={{ height: '45px' }}
             src={require('../images/Logo_1@2x.png')}
           />
-          <div style={{fontFamily: "Circular Std", color: "#6324fe", fontSize: "15px"}}>dappgigs</div>
+          <div
+            style={{
+              fontFamily: 'Circular Std',
+              color: '#6324fe',
+              fontSize: '15px',
+            }}
+          >
+            dappgigs
+          </div>
         </div>
+
+        <Navigation>
+          <Logo to="/">
+            <img
+              style={{ height: '45px' }}
+              src={require('../images/Logo_1@2x.png')}
+            />
+            dappgigs
+          </Logo>
+          <Links>
+            <ButtonContainer />
+            <Button
+              handleClick={() => navigate('/listing')}
+              label="Post a listing for $49"
+              bg="#32E19F"
+              color="#FFF"
+              hoverBg="#2DCE91"
+            />
+          </Links>
+        </Navigation>
+
         <Hero>
           <HeroContainer>
             <FlexContainer flexProps="justify-content: center; flex-direction: column; position: relative;">

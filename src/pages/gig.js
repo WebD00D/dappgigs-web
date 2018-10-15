@@ -61,8 +61,6 @@ const Hero = styled('div')`
   @media (max-width: 700px) {
     min-height: 500px;
   }
-
-  
 `
 
 const LogoCard = styled('div')`
@@ -106,6 +104,50 @@ const BodyCopy = styled('div')`
   margin-bottom: 12px;
 `
 
+const Navigation = styled('div')`
+  height: 80px;
+  padding-left: 30px;
+  padding-right: 30px;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+  background-color: #fff;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+
+  @media (max-width: 700px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+`
+
+const Logo = styled(Link)`
+  font-family: Circular Std;
+  display: flex;
+  align-items: center;
+  color: #6324fe;
+  font-size: 24px;
+  font-weight: 500;
+  text-decoration: none;
+
+  img {
+    height: 45px;
+    margin-bottom: 0px;
+    margin-right: 12px;
+  }
+`
+
+const Links = styled('div')`
+  display: flex;
+  align-items: center;
+`
+
+const ButtonContainer = styled('div')`
+  width: 175px;
+`
+
 export default class Gig extends Component {
   constructor(props) {
     super(props)
@@ -136,7 +178,6 @@ export default class Gig extends Component {
       .ref(`/listings/${gigId}`)
       .once('value')
       .then(snapshot => {
-
         snapshot.val()
           ? this.setState({
               fields: snapshot.val().fields,
@@ -194,15 +235,37 @@ export default class Gig extends Component {
 
     return (
       <Layout>
+        <Navigation>
+          <Logo to="/">
+            <img
+              style={{ height: '45px' }}
+              src={require('../images/Logo_1@2x.png')}
+            />
+            dappgigs
+          </Logo>
+          <Links>
+            <ButtonContainer />
+            <Button
+              handleClick={() => navigate('/listing')}
+              label="Post a listing for $49"
+              bg="#32E19F"
+              color="#FFF"
+              hoverBg="#2DCE91"
+            />
+          </Links>
+        </Navigation>
         <Hero>
-          <PageContainer >
-            <FlexContainer mobile="flex-direction: column; align-items: center;" >
+          <PageContainer>
+            <FlexContainer mobile="flex-direction: column; align-items: center;">
               <FlexContainer flexProps="align-items: center">
                 <LogoCard>
                   <img src={logoURL} />
                 </LogoCard>
               </FlexContainer>
-              <FlexContainer flexProps="justify-content: center; flex-direction: column; position: relative;" mobile=" align-items: center; text-align: center;">
+              <FlexContainer
+                flexProps="justify-content: center; flex-direction: column; position: relative;"
+                mobile=" align-items: center; text-align: center;"
+              >
                 <h1>{position}</h1>
                 <h3>
                   <a target="_blank" href={website}>
@@ -253,5 +316,3 @@ export default class Gig extends Component {
     )
   }
 }
-
-
