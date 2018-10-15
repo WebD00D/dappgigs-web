@@ -167,7 +167,8 @@ export default class IndexPage extends Component {
             backgroundColor: '#ffffff',
             zIndex: this.state.loadingZIndex,
             opacity: this.state.loadingZIndex,
-            transition: '.4s ease'
+            transition: '.4s ease',
+            top: '0px'
           }}
         >
           <img
