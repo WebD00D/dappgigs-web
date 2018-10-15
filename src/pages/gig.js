@@ -57,6 +57,12 @@ const Hero = styled('div')`
     font-size: 12px;
     margin-bottom: 0px;
   }
+
+  @media (max-width: 700px) {
+    min-height: 500px;
+  }
+
+  
 `
 
 const LogoCard = styled('div')`
@@ -77,6 +83,10 @@ const LogoCard = styled('div')`
     margin-bottom: 0px;
     max-height: 100px;
     max-width: 100px;
+  }
+
+  @media (max-width: 700px) {
+    margin-right: 0px;
   }
 `
 
@@ -185,14 +195,14 @@ export default class Gig extends Component {
     return (
       <Layout>
         <Hero>
-          <PageContainer>
-            <FlexContainer>
+          <PageContainer >
+            <FlexContainer mobile="flex-direction: column; align-items: center;" >
               <FlexContainer flexProps="align-items: center">
                 <LogoCard>
                   <img src={logoURL} />
                 </LogoCard>
               </FlexContainer>
-              <FlexContainer flexProps="justify-content: center; flex-direction: column; position: relative;">
+              <FlexContainer flexProps="justify-content: center; flex-direction: column; position: relative;" mobile=" align-items: center; text-align: center;">
                 <h1>{position}</h1>
                 <h3>
                   <a target="_blank" href={website}>

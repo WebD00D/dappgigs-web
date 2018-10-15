@@ -51,6 +51,10 @@ const Hero = styled('div')`
     font-weight: 500;
     font-size: 16px;
   }
+
+  @media (max-width: 700px) {
+    height: 300px;
+  }
 `
 
 const HeroJobCard = styled('img')`
@@ -58,6 +62,10 @@ const HeroJobCard = styled('img')`
   height: 400px;
   right: -150px;
   margin-bottom: 0px;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `
 
 const Divider = styled('div')`

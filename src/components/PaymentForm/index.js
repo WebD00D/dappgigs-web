@@ -106,7 +106,7 @@ class PaymentForm extends Component {
               label={
                 this.state.submitting
                   ? 'Submitting...'
-                  : 'Look good? Send it live!'
+                  : 'Publish listing'
               }
               bg="#32E19F"
               color="#FFF"

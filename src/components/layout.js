@@ -25,6 +25,11 @@ const Navigation = styled('div')`
   z-index: 5;
   background-color: #fff;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+
+  @media (max-width: 700px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `
 
 const Logo = styled(Link)`
@@ -80,7 +85,7 @@ const Layout = ({ children }) => (
         <div>
           <Navigation>
             <Logo to="/">
-              <img src={require('../images/Logo_1@2x.png')} />
+              <img style={{height: "45px"}} src={require('../images/Logo_1@2x.png')} />
               dappgigs
             </Logo>
             <Links>

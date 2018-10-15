@@ -54,7 +54,25 @@ const Hero = styled('div')`
     display: flex;
     align-items: center;
   }
+
+  @media ( max-width: 700px ) {
+
+    
+    background-position: top;
+
+
+    h1 {
+      font-size: 24px;
+    }
+
+    h3 {
+
+    }
+  }
+
+
 `
+
 
 const HeroContainer = styled('div')`
   max-width: 1100px;
@@ -64,10 +82,12 @@ const HeroContainer = styled('div')`
   padding-left: 30px;
   padding-right: 30px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 700px) {
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 270px;
   }
+
 `
 
 const ArrowButton = styled('img')`

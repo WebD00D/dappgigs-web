@@ -8,7 +8,7 @@ export const PageContainer = styled('div')`
   padding-left: 30px;
   padding-right: 30px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 700px) {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -35,6 +35,8 @@ export const FormFieldWrap = styled('div')`
   position: relative
 
   ${props => props.alignment};
+
+ 
 `
 
 export const FlexContainer = styled('div')`
@@ -42,6 +44,11 @@ export const FlexContainer = styled('div')`
   height: 100%;
 
   ${props => props.flexProps};
+
+  @media (max-width: 700px) {
+    ${props => props.mobile};
+
+  }
 `
 
 export const colors = {
