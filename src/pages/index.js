@@ -171,7 +171,6 @@ export default class IndexPage extends Component {
       .ref('/listings')
       .once('value')
       .then(snapshot => {
-        console.log('snapshot val', snapshot.val())
         this.setState({
           listings: snapshot.val(),
           loadingZIndex: -1,
@@ -184,7 +183,6 @@ export default class IndexPage extends Component {
     const listings =
       this.state.listings &&
       Object.keys(this.state.listings).map(key => {
-        console.log(key)
         return (
           <FormFieldRow key={this.state.listings[key].stripeRef}>
             <JobCard id={key} fields={this.state.listings[key]} />
