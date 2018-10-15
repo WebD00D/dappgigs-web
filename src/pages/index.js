@@ -4,8 +4,7 @@ import Layout from '../components/layout'
 
 import db from '../db'
 
-import _ from "lodash";
-
+import _ from 'lodash'
 
 import styled from 'react-emotion'
 
@@ -55,24 +54,17 @@ const Hero = styled('div')`
     align-items: center;
   }
 
-  @media ( max-width: 700px ) {
-
-    
+  @media (max-width: 700px) {
     background-position: top;
-
 
     h1 {
       font-size: 24px;
     }
 
     h3 {
-
     }
   }
-
-
 `
-
 
 const HeroContainer = styled('div')`
   max-width: 1100px;
@@ -87,7 +79,6 @@ const HeroContainer = styled('div')`
     padding-right: 15px;
     padding-top: 270px;
   }
-
 `
 
 const ArrowButton = styled('img')`
@@ -123,11 +114,15 @@ export default class IndexPage extends Component {
 
     this.state = {
       listings: [],
+      loadingZIndex: 11,
+      loadingOpacity: 1
     }
   }
 
   componentDidMount() {
     // fetch listings..
+
+  
 
     db.database()
       .ref('/listings')
@@ -136,6 +131,8 @@ export default class IndexPage extends Component {
         console.log('snapshot val', snapshot.val())
         this.setState({
           listings: snapshot.val(),
+          loadingZIndex: -1,
+          loadingOpacity: 0
         })
       })
   }
@@ -152,12 +149,33 @@ export default class IndexPage extends Component {
         )
       })
 
-    return _.reverse(listings);
+    return _.reverse(listings)
   }
 
   render() {
     return (
       <Layout>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            position: 'fixed',
+            height: '100%',
+            width: '100%',
+            backgroundColor: '#ffffff',
+            zIndex: this.state.loadingZIndex,
+            opacity: this.state.loadingZIndex,
+            transition: '.4s ease'
+          }}
+        >
+          <img
+            style={{ height: '45px' }}
+            src={require('../images/Logo_1@2x.png')}
+          />
+          <div style={{fontFamily: "Circular Std", color: "#6324fe", fontSize: "15px"}}>dappgigs</div>
+        </div>
         <Hero>
           <HeroContainer>
             <FlexContainer flexProps="justify-content: center; flex-direction: column; position: relative;">
@@ -183,9 +201,7 @@ export default class IndexPage extends Component {
             </FlexContainer>
           </HeroContainer>
         </Hero>
-        <PageContainer>
-          {this.renderListings()}
-        </PageContainer>
+        <PageContainer>{this.renderListings()}</PageContainer>
       </Layout>
     )
   }
