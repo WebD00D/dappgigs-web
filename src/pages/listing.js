@@ -169,13 +169,13 @@ export default class Listing extends Component {
   componentDidMount() {
     if (window.Stripe) {
       this.setState({
-        stripe: window.Stripe('pk_test_4MuZQsjjPxygGfpjv1SRbbrX'),
+        stripe: window.Stripe('pk_live_4MuZBQJz1AkWqEQ7bR0pfjmI'),
       })
     } else {
       document.querySelector('#stripe-js').addEventListener('load', () => {
         // Create Stripe instance once Stripe.js loads
         this.setState({
-          stripe: window.Stripe('pk_test_4MuZQsjjPxygGfpjv1SRbbrX'),
+          stripe: window.Stripe('pk_live_4MuZBQJz1AkWqEQ7bR0pfjmI'),
         })
       })
     }
