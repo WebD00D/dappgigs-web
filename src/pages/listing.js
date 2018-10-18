@@ -182,6 +182,11 @@ export default class Listing extends Component {
   }
 
   createListing(paymentId) {
+
+    if ( !paymentId) {
+      paymentId = Date.now()
+    }
+
     const listingData = {
       stripeRef: paymentId,
       fields: this.state.fields,
@@ -225,6 +230,8 @@ export default class Listing extends Component {
   }
 
   render() {
+
+    
     return (
       <StripeProvider stripe={this.state.stripe}>
 
@@ -402,6 +409,7 @@ export default class Listing extends Component {
                   </BodyCopy>
                 </FormFieldWrap>
               </FormFieldRow>
+           
               <Elements>
                 <PaymentForm
                   buttonDisabled={!this.state.enablePayment}
