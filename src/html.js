@@ -35,6 +35,22 @@ export default class HTML extends React.Component {
             })  `,
             }}
           />
+
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-127720156-1"
+          />
+
+          <script
+            id="__googleAnalytics"
+            dangerouslySetInnerHTML={{
+              __html: ` window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'UA-127720156-1'); `,
+            }}
+          />
         </body>
       </html>
     )
